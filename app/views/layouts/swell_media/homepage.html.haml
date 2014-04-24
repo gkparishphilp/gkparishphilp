@@ -1,0 +1,45 @@
+
+
+!!!strict
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8">
+/[if IE 8] <html class="no-js lt-ie9">
+//[if gt IE 8] <html class="no-js">
+%html{ lang: :en }
+	%head
+		= render 'application/html_head', args: {}
+	%body
+		= render 'application/analytics'
+		%header#header
+			= render 'application/navbar'
+
+		= render 'application/flash'
+		
+
+		- if SwellMedia::Article.active.order( publish_at: :desc ).limit( 2 ).present?
+			.container{ style: 'margin-top:8em;' }
+				.row
+					.col-sm-12
+						%h2.text-center Recent Blog Posts
+				.row
+					- SwellMedia::Article.active.order( publish_at: :desc ).limit( 2 ).each do |article|
+						.col-sm-6
+							.blog
+								= article.user.avatar_tag
+								.blog-desc
+									%h3
+										%a{ href: article.url } 
+											= article.title
+									%hr
+									%p.text-muted 
+										by 
+										= article.user
+									%p 
+										= article.description
+									%a.btn.btn-lg.btn-red{ href: article.url } 
+										Read More...
+					
+
+		= render 'application/footer'
+
+		

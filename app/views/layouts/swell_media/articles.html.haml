@@ -1,0 +1,49 @@
+!!!strict
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8">
+/[if IE 8] <html class="no-js lt-ie9">
+//[if gt IE 8] <html class="no-js">
+%html{ lang: :en }
+	%head
+		= render 'application/html_head', args: {}
+	%body
+		= render 'application/fb_js_sdk'
+		= render 'application/analytics'
+		= render 'application/navbar'
+
+		.wrapper
+			= render 'application/breadcrumb_nav'
+			= render 'application/flash'
+			.container
+				.row
+					.col-sm-8
+						= yield
+					.col-sm-4
+						.well
+							%h3
+								%i.icon-search
+								Search My Blog
+
+							= form_tag articles_path, method: :get, class: 'no-margin-bottom form-search' do
+								%fieldset
+									.controls.controls-row
+										= text_field_tag :q, params[:q], class: 'form-control search-input span3', placeholder: "Input search query"
+									.controls.controls-row{ style:'margin-top:5px;' }
+										= submit_tag 'Search', class: 'btn btn-primary pull-right'
+						
+						- if @tags.present?
+							.well
+								%h3
+									%i.icon-tags
+									Tags
+								%ul
+									- @tags.each do |tag|
+										%li
+											%a.side-tag{ href: articles_path( tagged: tag.name ) }
+												= tag.name
+	
+		= render 'application/footer'
+
+
+
+

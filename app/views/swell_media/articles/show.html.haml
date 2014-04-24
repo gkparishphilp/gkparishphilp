@@ -1,0 +1,28 @@
+- cache( @media ) do
+	.blog
+		= @media.user.avatar_tag
+		.blog-desc
+			%h3
+				%a{ href: @media.url } 
+					= @media.title
+			%hr
+			%p.text-muted
+				by 
+				= @media.user
+				on 
+				= @media.publish_at.to_date.to_s( :long )
+
+				= render 'application/fb_like_button', url: @media.url
+
+			- if @media.avatar.present?
+				= image_tag @media.avatar, class: 'img-responsive'
+
+		.blog-content
+			= raw @media.content
+
+	- if @media.is_commentable?
+		%section#comments{ style: 'margin-top:2em;' }
+			= render 'application/fb_comments'
+
+
+

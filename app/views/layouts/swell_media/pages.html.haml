@@ -1,0 +1,21 @@
+!!!strict
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8">
+/[if IE 8] <html class="no-js lt-ie9">
+//[if gt IE 8] <html class="no-js">
+%html{ lang: :en }
+	%head
+		= render 'application/html_head', args: {}
+	%body
+		= render 'application/analytics'
+		= render 'application/navbar'
+
+		.wrapper
+			= render 'application/breadcrumb_nav'
+			= render 'application/flash'
+			.container
+				= yield
+
+
+		= render 'application/footer'
+

@@ -1,0 +1,24 @@
+- cache( "row-#{article.cache_key}" ) do
+	.blog
+		= article.user.avatar_tag
+		.blog-desc
+			%h3
+				%a{ href: article.url } 
+					= article.title
+			%hr
+			%p.text-muted
+				by 
+				= article.user
+				on 
+				= article.publish_at.to_date.to_s( :long )
+			%p
+				= article.description
+
+			%a.btn.btn-lg.btn-red{ href: article.url }
+				Read More...</a>
+			- if article.avatar.present?
+				%a{ href: article.url }
+					= image_tag article.avatar, class: 'img-responsive'
+
+
+
