@@ -1,20 +1,23 @@
 - cache( "row-#{article.cache_key}" ) do
 	.blog
-		= article.user.avatar_tag
 		.blog-desc
 			%h3
 				%a{ href: article.url } 
 					= article.title
 			%hr
 			%p.text-muted
+				= article.user.avatar_tag( width: 36 )
 				by 
 				= article.user
 				on 
 				= article.publish_at.to_date.to_s( :long )
 			%p
-				= article.description
+				- if article.description.present?
+					= raw article.description
+				- else
+					= truncate( article.content, length: 500, separator: ' ', escape: false )
 
-			%a.btn.btn-lg.btn-red{ href: article.url }
+			%a.btn.btn-lg.btn-success{ href: article.url }
 				Read More...</a>
 			- if article.avatar.present?
 				%a{ href: article.url }

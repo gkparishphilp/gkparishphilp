@@ -24,20 +24,7 @@
 				.row
 					- SwellMedia::Article.active.order( publish_at: :desc ).limit( 2 ).each do |article|
 						.col-sm-6
-							.blog
-								= article.user.avatar_tag
-								.blog-desc
-									%h3
-										%a{ href: article.url } 
-											= article.title
-									%hr
-									%p.text-muted 
-										by 
-										= article.user
-									%p 
-										= article.description
-									%a.btn.btn-lg.btn-red{ href: article.url } 
-										Read More...
+							= render 'swell_media/articles/row', article: article
 					
 
 		= render 'application/footer'
