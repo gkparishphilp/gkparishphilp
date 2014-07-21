@@ -8,10 +8,11 @@
 		= render 'application/html_head', args: {}
 	%body
 		= render 'application/analytics'
-		= render 'application/navbar'
-
+		=# render 'application/navbar'
+		.left-nav
+			%h1 Gk
 		.wrapper
-			= render 'application/breadcrumb_nav'
+			=# render 'application/breadcrumb_nav'
 			= render 'application/flash'
 			.container
 				= yield

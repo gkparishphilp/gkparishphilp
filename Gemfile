@@ -37,8 +37,9 @@ gem 'unicorn'
 gem 'rails_12factor', group: :production
 
 # prod
-gem 'swell_media', git: 'git://github.com/playswell/swell_media.git'
+# gem 'swell_media', git: 'git://github.com/playswell/swell_media.git'
 
 # dev
-# gem 'swell_media', path: '../../playswell/engines/swell_media' 
+gem 'swell_media', path: '../../playswell/engines/swell_media', group: :development
+
 

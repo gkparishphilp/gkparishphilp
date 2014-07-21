@@ -17,7 +17,7 @@
 			- if @media.avatar.present?
 				= image_tag @media.avatar, class: 'img-responsive'
 
-		.blog-content
+		.article-body
 			= raw @media.content
 
 	- if @media.is_commentable?

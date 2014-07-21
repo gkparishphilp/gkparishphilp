@@ -11,7 +11,7 @@
 				= article.user
 				on 
 				= article.publish_at.to_date.to_s( :long )
-			%p
+			.article-body
 				- if article.description.present?
 					= raw article.description
 				- else
