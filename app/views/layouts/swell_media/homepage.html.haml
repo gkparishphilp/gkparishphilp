@@ -74,7 +74,7 @@
 						- SwellMedia::Article.active.order( publish_at: :desc ).limit( 6 ).each do |article|
 							.post
 								%section
-									.post-preview.col-xs-10.no-gutter
+									.post-preview.col-xs-12.no-gutter
 										%h2
 											%a{ href: article.url }
 												= article.title
@@ -87,7 +87,7 @@
 												= truncate( article.content, length: 500, separator: ' ', escape: false )
 										
 
-									.col-xs-2.no-gutter
+									-#.col-xs-2.no-gutter
 										= image_tag article.user.avatar_url, class: 'user-icon user-1', alt: article.user.to_s 
 
 		= render 'application/footer'
