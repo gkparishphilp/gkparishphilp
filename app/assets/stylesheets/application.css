@@ -15,12 +15,4 @@
  *= require_self
  */
 
-body{
-	background: #efefef;
-}
-
-.sidebar{
-	height:100%;
-	background: #fff;
-}
 

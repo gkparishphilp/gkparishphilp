@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require turbolinks
+//= require_tree ./vendor
+//= require_tree ./theme
 //= require_tree .

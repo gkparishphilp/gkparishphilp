@@ -9,24 +9,90 @@
 	%head
 		= render 'application/html_head', args: {}
 	%body
-		= render 'application/analytics'
-		%header#header
-			= render 'application/navbar'
+		.container.home-container
+			.row
+				#menu
+					%ul
+						%li
+							%i.entypo-home
+								%a{ href: '#' }
+									Home
+						%li
+							%i.entypo-user
+								%a{ href: '#' }
+									About
+						%li
+							%i.entypo-user
+								%a{ href: '#' }
+									Blog
+						%li
+							%i.entypo-user
+								%a{ href: '#' }
+									Contact
+				.sidebar.col-md-5.col-sm-12
+					%span.menu-trigger.side-writer-icon.animated.fadeInDown
+						%span.bar
+						%span.bar
+						%span.bar
+					%noscript
+						.no-js-menu
+							%ul	
+								%li
+									%i.entypo-home
+										%a{ href: '#' }
+											Home
+								%li
+									%i.entypo-user
+										%a{ href: '#' }
+											About
+								%li
+									%i.entypo-user
+										%a{ href: '#' }
+											Blog
+								%li
+									%i.entypo-user
+										%a{ href: '#' }
+											Contact
 
-		= render 'application/flash'
-		
+					.site-info
+						.primary-info
+							
+							%h1
+								= image_tag User.first.avatar_url, class: 'img img-circle'
+								Hi, I'm Gk
+							%p
+								A dad, hacker, entrepreneur just trying to make his way in the world.
 
-		- if SwellMedia::Article.active.order( publish_at: :desc ).limit( 2 ).present?
-			.container{ style: 'margin-top:4em;' }
-				.row
-					.col-sm-12
-						%h2.text-center Recent Blog Posts
-				.row
-					- SwellMedia::Article.active.order( publish_at: :desc ).limit( 2 ).each do |article|
-						.col-sm-6
-							= render 'swell_media/articles/row', article: article
-					
+				.col-md-7.col-sm-12.col-md-offset-5.main-content
+					.nav
+						%a.select-posts.active{ href: '#' }
+							Posts
+						%a.select-categories{ href: '#' }
+							Categories
+
+					.home-page-posts.animated.fadeIn
+						- SwellMedia::Article.active.order( publish_at: :desc ).limit( 6 ).each do |article|
+							.post
+								%section
+									.post-preview.col-xs-10.no-gutter
+										%h2
+											%a{ href: article.url }
+												= article.title
+										%p.meta
+											= article.publish_at.to_date.to_s( :long )
+										%p
+											- if article.description.present?
+												= raw article.description
+											- else
+												= truncate( article.content, length: 500, separator: ' ', escape: false )
+										
+
+									.col-xs-2.no-gutter
+										= image_tag article.user.avatar_url, class: 'user-icon user-1', alt: article.user.to_s 
 
 		= render 'application/footer'
 
-		
+		= render 'application/analytics'
+
+		= javascript_include_tag "application", "data-turbolinks-track" => true
+		= javascript_include_tag '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
