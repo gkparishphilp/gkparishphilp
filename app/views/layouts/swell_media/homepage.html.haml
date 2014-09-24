@@ -36,7 +36,7 @@
 								A dad, hacker, entrepreneur just trying to make his way in the world.
 
 				.col-md-7.col-sm-12.col-md-offset-5.main-content
-					.col-sm-hidden{ style: 'float:right;margin-top:-3em;'}
+					.hidden-sm.hidden-xs{ style: 'float:right;margin-top:-3em;'}
 						= render 'application/nav_list', args: { class: 'inline-list' }
 					.clearfix
 					= render 'application/flash'
@@ -52,12 +52,14 @@
 					.home-page-categories.hide.animated.fadeIn
 						.category.row
 							%section
-								- SwellMedia::Category.all.each do |cat|
-									.category-preview.col-xs-6.col-sm-4
-										%h2
-											= cat.name
-										%a{ href: swell_media.articles_path( category: cat.slug ) }
-											= image_tag cat.avatar, alt: "category-image", class: 'img img-responsive'
+								- SwellMedia::Category.active.each do |cat|
+									.category-preview.col-xs-12.col-sm-6
+										.thumbnail
+											%a{ href: swell_media.articles_path( category: cat.slug ) }
+												= image_tag cat.avatar, alt: "category-image", class: 'img img-responsive'
+												.caption
+													%h4
+														= cat.name
 
 		= render 'application/footer'
 

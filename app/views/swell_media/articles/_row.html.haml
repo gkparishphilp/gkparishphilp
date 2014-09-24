@@ -9,7 +9,7 @@
 					= article.publish_at.to_date.to_s( :long )
 					- if article.category.present?
 						in
-						= link_to article.category, blog_index_path( category: article.category )
+						= link_to article.category, articles_path( category: article.category.slug )
 					%i.link-spacer
 					%i.fa.fa-bookmark
 					About a 

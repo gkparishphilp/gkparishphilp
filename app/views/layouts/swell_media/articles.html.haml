@@ -13,12 +13,12 @@
 		= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
 		= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 	%body
-		%span.menu-trigger.side-writer-icon.animated.fadeInDown
+		%span.menu-trigger.side-writer-icon.animated.fadeInDown{ style: 'margin:1em;'}
 			%span.bar
 			%span.bar
 			%span.bar
 		- if @media && @media.avatar.present?
-			.hero-image.hero-a-great-story
+			.hero-image.hero-a-great-story{ style: "background: url(#{@media.avatar}) center center no-repeat;background-size:cover;"}
 				%noscript
 					.no-js-menu
 						= render 'application/nav_list', args: {}
@@ -28,9 +28,9 @@
 					= render 'application/nav_list', args: {}
 
 				.col-xs-12.main-content.single-content
-					.col-sm-hidden{ style: 'float:right;margin-top:-2em;'}
+					-#.hidden-xs{ style: 'float:right;margin-top:-2em;'}
 						= render 'application/nav_list', args: { class: 'inline-list' }
-					.clearfix
+					-#.clearfix
 					= render 'application/flash'
 
 					= yield

@@ -1,27 +1,46 @@
 - cache( @media ) do
-	%p.meta
-		= @media.author
-		on 
-		= @media.publish_at.to_date.to_s( :long )
-		- if @media.category.present?
-			in
-			= link_to @media.category, blog_index_path( category: @media.category )
-		%i.link-spacer
-		%i.fa.fa-bookmark
-		About a 
-		= @media.reading_time[:minutes_only]
-		minute read.
+	- if @media.avatar.present?
+		.title-section{ style: 'margin-top:-16em;background-color:rgba(50,50,50,0.8);padding:2em;'}
+			%h1{ style: 'color: #eee;' }
+				= @media.title
 
-	%h1
-		= @media.title
+			- if @media.subtitle.present?
+				%p.subtitle{ style: 'color: #ddd;' }
+					= @media.subtitle
 
-	- if @media.subtitle.present?
-		%p.subtitle
-			= @media.subtitle
+			%p.meta
+				= @media.author
+				on 
+				= @media.publish_at.to_date.to_s( :long )
+				- if @media.category.present?
+					in
+					= link_to @media.category, articles_path( category: @media.category.slug )
+				%i.link-spacer
+				%i.fa.fa-bookmark
+				About a 
+				= @media.reading_time[:minutes_only]
+				minute read.
+	- else
+		.title-section
+			%h1
+				= @media.title
 
+			- if @media.subtitle.present?
+				%p.subtitle
+					= @media.subtitle
 
-			- if @media.avatar.present?
-				= image_tag @media.avatar, class: 'img-responsive'
+			%p.meta
+				= @media.author
+				on 
+				= @media.publish_at.to_date.to_s( :long )
+				- if @media.category.present?
+					in
+					= link_to @media.category, articles_path( category: @media.category.slug )
+				%i.link-spacer
+				%i.fa.fa-bookmark
+				About a 
+				= @media.reading_time[:minutes_only]
+				minute read.
 
 	%p
 		= raw @media.content
