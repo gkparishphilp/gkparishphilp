@@ -1,22 +1,51 @@
+
+
 !!!strict
 /[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7">
 /[if IE 7] <html class="no-js lt-ie9 lt-ie8">
 /[if IE 8] <html class="no-js lt-ie9">
 //[if gt IE 8] <html class="no-js">
-%html.no-js{ lang: :en }
+%html{ lang: :en }
 	%head
 		= render 'application/html_head', args: {}
-	%body
-		=# render 'application/navbar'
-		.left-nav
-			%h1 Gk
-		.wrapper
-			=# render 'application/breadcrumb_nav'
-			= render 'application/flash'
-			.container
-				= yield
 
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+		= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+	%body
+		.container.home-container
+			.row
+				#menu
+					= render 'application/nav_list', args: {}
+				.sidebar.col-md-5.col-sm-12
+					%span.menu-trigger.side-writer-icon.animated.fadeInDown
+						%span.bar
+						%span.bar
+						%span.bar
+					%noscript
+						.no-js-menu
+							= render 'application/nav_list', args: {}
+
+					.site-info
+						.primary-info
+							
+							%h1
+								= image_tag User.first.avatar_url, class: 'img img-circle'
+								Hi, I'm Gk
+							%p
+								A dad, hacker, entrepreneur just trying to make his way in the world.
+
+				.col-md-7.col-sm-12.col-md-offset-5.main-content
+					.col-sm-hidden{ style: 'float:right;margin-top:-3em;'}
+						= render 'application/nav_list', args: { class: 'inline-list' }
+					.clearfix
+					= render 'application/flash'
+
+					= yield
 
 		= render 'application/footer'
 
 		= render 'application/analytics'
+
+		= javascript_include_tag "application", "data-turbolinks-track" => true
+		= javascript_include_tag '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'

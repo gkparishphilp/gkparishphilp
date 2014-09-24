@@ -1,27 +1,26 @@
 - cache( "row-#{article.cache_key}" ) do
-	.blog
-		.blog-desc
-			%h3
-				%a{ href: article.url } 
-					= article.title
-			%hr
-			%p.text-muted
-				= article.user.avatar_tag( width: 36 )
-				by 
-				= article.user
-				on 
-				= article.publish_at.to_date.to_s( :long )
-			.article-body
-				- if article.description.present?
-					= raw article.description
-				- else
-					= truncate( article.content, length: 500, separator: ' ', escape: false )
+	.post
+		%section
+			.post-preview.col-xs-12.no-gutter
+				%h2
+					%a{ href: article.url }
+						= article.title
+				%p.meta
+					= article.publish_at.to_date.to_s( :long )
+					- if article.category.present?
+						in
+						= link_to article.category, blog_index_path( category: article.category )
+					%i.link-spacer
+					%i.fa.fa-bookmark
+					About a 
+					= article.reading_time[:minutes_only]
+					minute read.
+				%p
+					- if article.description.present?
+						= raw article.description
+					- else
+						= truncate( article.content, length: 500, separator: ' ', escape: false )
+				
 
-			%a.btn.btn-lg.btn-success{ href: article.url }
-				Read More...</a>
-			- if article.avatar.present?
-				%a{ href: article.url }
-					= image_tag article.avatar, class: 'img-responsive'
-
-
-
+			-#.col-xs-2.no-gutter
+				= image_tag article.user.avatar_url, class: 'user-icon user-1', alt: article.user.to_s 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140424184332) do
+ActiveRecord::Schema.define(version: 20140924020616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20140424184332) do
     t.string   "type"
     t.integer  "lft"
     t.integer  "rgt"
-    t.string   "users_name",   default: "players"
     t.text     "description"
     t.integer  "status",       default: 0
     t.integer  "availability", default: 0
@@ -35,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140424184332) do
     t.hstore   "properties"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar"
   end
 
   add_index "categories", ["lft"], name: "index_categories_on_lft", using: :btree
@@ -136,14 +136,6 @@ ActiveRecord::Schema.define(version: 20140424184332) do
   add_index "oauth_credentials", ["uid"], name: "index_oauth_credentials_on_uid", using: :btree
   add_index "oauth_credentials", ["user_id"], name: "index_oauth_credentials_on_user_id", using: :btree
 
-  create_table "roles", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
-
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -162,18 +154,6 @@ ActiveRecord::Schema.define(version: 20140424184332) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
-
-  create_table "user_roles", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "granting_user_id"
-    t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_roles", ["granting_user_id"], name: "index_user_roles_on_granting_user_id", using: :btree
-  add_index "user_roles", ["role_id"], name: "index_user_roles_on_role_id", using: :btree
-  add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -234,6 +214,7 @@ ActiveRecord::Schema.define(version: 20140424184332) do
     t.hstore   "settings"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "role",                             default: 1
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

@@ -8,27 +8,15 @@
 %html{ lang: :en }
 	%head
 		= render 'application/html_head', args: {}
+
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+		= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 	%body
 		.container.home-container
 			.row
 				#menu
-					%ul
-						%li
-							%i.entypo-home
-								%a{ href: '#' }
-									Home
-						%li
-							%i.entypo-user
-								%a{ href: '#' }
-									About
-						%li
-							%i.entypo-user
-								%a{ href: '#' }
-									Blog
-						%li
-							%i.entypo-user
-								%a{ href: '#' }
-									Contact
+					= render 'application/nav_list', args: {}
 				.sidebar.col-md-5.col-sm-12
 					%span.menu-trigger.side-writer-icon.animated.fadeInDown
 						%span.bar
@@ -36,23 +24,7 @@
 						%span.bar
 					%noscript
 						.no-js-menu
-							%ul	
-								%li
-									%i.entypo-home
-										%a{ href: '#' }
-											Home
-								%li
-									%i.entypo-user
-										%a{ href: '#' }
-											About
-								%li
-									%i.entypo-user
-										%a{ href: '#' }
-											Blog
-								%li
-									%i.entypo-user
-										%a{ href: '#' }
-											Contact
+							= render 'application/nav_list', args: {}
 
 					.site-info
 						.primary-info
@@ -64,6 +36,10 @@
 								A dad, hacker, entrepreneur just trying to make his way in the world.
 
 				.col-md-7.col-sm-12.col-md-offset-5.main-content
+					.col-sm-hidden{ style: 'float:right;margin-top:-3em;'}
+						= render 'application/nav_list', args: { class: 'inline-list' }
+					.clearfix
+					= render 'application/flash'
 					.nav
 						%a.select-posts.active{ href: '#' }
 							Posts
@@ -72,23 +48,16 @@
 
 					.home-page-posts.animated.fadeIn
 						- SwellMedia::Article.active.order( publish_at: :desc ).limit( 6 ).each do |article|
-							.post
-								%section
-									.post-preview.col-xs-12.no-gutter
+							= render 'swell_media/articles/row', article: article
+					.home-page-categories.hide.animated.fadeIn
+						.category.row
+							%section
+								- SwellMedia::Category.all.each do |cat|
+									.category-preview.col-xs-6.col-sm-4
 										%h2
-											%a{ href: article.url }
-												= article.title
-										%p.meta
-											= article.publish_at.to_date.to_s( :long )
-										%p
-											- if article.description.present?
-												= raw article.description
-											- else
-												= truncate( article.content, length: 500, separator: ' ', escape: false )
-										
-
-									-#.col-xs-2.no-gutter
-										= image_tag article.user.avatar_url, class: 'user-icon user-1', alt: article.user.to_s 
+											= cat.name
+										%a{ href: swell_media.articles_path( category: cat.slug ) }
+											= image_tag cat.avatar, alt: "category-image", class: 'img img-responsive'
 
 		= render 'application/footer'
 

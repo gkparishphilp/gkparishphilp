@@ -1,3 +1,5 @@
+
+
 !!!strict
 /[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7">
 /[if IE 7] <html class="no-js lt-ie9 lt-ie8">
@@ -6,43 +8,37 @@
 %html{ lang: :en }
 	%head
 		= render 'application/html_head', args: {}
+
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+		= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 	%body
-		= render 'application/navbar'
+		%span.menu-trigger.side-writer-icon.animated.fadeInDown
+			%span.bar
+			%span.bar
+			%span.bar
+		- if @media && @media.avatar.present?
+			.hero-image.hero-a-great-story
+				%noscript
+					.no-js-menu
+						= render 'application/nav_list', args: {}
+		.container
+			.row
+				#menu
+					= render 'application/nav_list', args: {}
 
-		.wrapper
-			=# render 'application/breadcrumb_nav'
-			= render 'application/flash'
-			.container
-				.row
-					.col-sm-8
-						= yield
-					.col-sm-4
-						.well
-							%h3
-								%i.icon-search
-								Search My Blog
+				.col-xs-12.main-content.single-content
+					.col-sm-hidden{ style: 'float:right;margin-top:-2em;'}
+						= render 'application/nav_list', args: { class: 'inline-list' }
+					.clearfix
+					= render 'application/flash'
 
-							= form_tag articles_path, method: :get, class: 'no-margin-bottom form-search' do
-								%fieldset
-									.controls.controls-row
-										= text_field_tag :q, params[:q], class: 'form-control search-input span3', placeholder: "Input search query"
-									.controls.controls-row{ style:'margin-top:5px;' }
-										= submit_tag 'Search', class: 'btn btn-primary pull-right'
-						
-						- if @tags.present?
-							.well
-								%h3
-									%i.icon-tags
-									Tags
-								%ul
-									- @tags.each do |tag|
-										%li
-											%a.side-tag{ href: articles_path( tagged: tag.name ) }
-												= tag.name
-	
+					= yield
+
+
 		= render 'application/footer'
 
 		= render 'application/analytics'
 
-
-
+		= javascript_include_tag "application", "data-turbolinks-track" => true
+		= javascript_include_tag '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'

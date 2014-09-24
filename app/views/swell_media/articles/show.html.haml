@@ -1,24 +1,32 @@
 - cache( @media ) do
-	.blog
-		.blog-desc
-			%h3
-				%a{ href: @media.url } 
-					= @media.title
-			%hr
-			%p.text-muted
-				= @media.user.avatar_tag( width: 36 )
-				by 
-				= @media.user
-				on 
-				= @media.publish_at.to_date.to_s( :long )
+	%p.meta
+		= @media.author
+		on 
+		= @media.publish_at.to_date.to_s( :long )
+		- if @media.category.present?
+			in
+			= link_to @media.category, blog_index_path( category: @media.category )
+		%i.link-spacer
+		%i.fa.fa-bookmark
+		About a 
+		= @media.reading_time[:minutes_only]
+		minute read.
 
-				= render 'application/fb_like_button', url: @media.url
+	%h1
+		= @media.title
+
+	- if @media.subtitle.present?
+		%p.subtitle
+			= @media.subtitle
+
 
 			- if @media.avatar.present?
 				= image_tag @media.avatar, class: 'img-responsive'
 
-		.article-body
-			= raw @media.content
+	%p
+		= raw @media.content
+
+
 
 	- if @media.is_commentable?
 		%section#comments{ style: 'margin-top:2em;' }
