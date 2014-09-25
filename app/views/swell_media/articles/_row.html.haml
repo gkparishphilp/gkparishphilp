@@ -1,7 +1,7 @@
 - cache( "row-#{article.cache_key}" ) do
 	.post
 		%section
-			.post-preview.col-xs-12.no-gutter
+			.post-preview.col-xs-9.no-gutter
 				%h2
 					%a{ href: article.url }
 						= article.title
@@ -22,5 +22,7 @@
 						= truncate( article.content, length: 500, separator: ' ', escape: false )
 				
 
-			-#.col-xs-2.no-gutter
-				= image_tag article.user.avatar_url, class: 'user-icon user-1', alt: article.user.to_s 
+			.col-xs-3
+				- if article.avatar.present?
+					%a{ href: article.url }
+						= image_tag article.avatar, alt: article.title, class: 'img img-responsive img-circle' #class: 'user-icon user-1'

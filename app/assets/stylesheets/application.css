@@ -24,3 +24,14 @@
 		display: inline;
 }
 
+.pagination{
+	font-size: 20px;
+}
+
+.pagination .page{
+	margin-right:1em;
+}
+
+.pagination .last{
+	display:none;
+}

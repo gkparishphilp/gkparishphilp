@@ -31,9 +31,20 @@
 							
 							%h1
 								= image_tag User.first.avatar_url, class: 'img img-circle'
-								Hi, I'm Gk
+								%span{ style: 'font-size: 125%;margin-left:12px;' }
+									Hi, I'm Gk
 							%p
-								A dad, hacker, entrepreneur just trying to make his way in the world.
+								dad, thinker, product hacker, entrepreneur
+						.secondary-info
+							%p
+								%a{ href: 'http://twitter.com/gkparishphilp', style: 'font-size:250%;color:#4099FF;margin-right:0.25em;margin-left:1em;border-bottom:none;', target: '_new' }
+									%i.fa.fa-twitter-square
+								%a{ href: 'http://facebook.com/gkparishphilp', style: 'font-size:250%;color:#4099FF;margin-right:0.25em;border-bottom:none;', target: '_new' }
+									%i.fa.fa-facebook-square
+								%a{ href: 'http://linkedin.com/in/gkparishphilp', style: 'font-size:250%;color:#4099FF;margin-right:0.25em;border-bottom:none;', target: '_new' }
+									%i.fa.fa-linkedin-square
+								%a{ href: 'http://github.com/gkparishphilp', style: 'font-size:250%;color:#4099FF;margin-right:0.25em;border-bottom:none;', target: '_new' }
+									%i.fa.fa-github-square
 
 				.col-md-7.col-sm-12.col-md-offset-5.main-content
 					.hidden-sm.hidden-xs{ style: 'float:right;margin-top:-3em;'}
