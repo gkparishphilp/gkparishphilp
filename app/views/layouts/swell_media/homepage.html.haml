@@ -37,7 +37,10 @@
 								dad, thinker, product hacker, entrepreneur
 						.secondary-info
 							%p
-								%a{ href: 'http://twitter.com/gkparishphilp', style: 'font-size:250%;color:#4099FF;margin-right:0.25em;margin-left:01em;border-bottom:none;', target: '_new' }
+								%a{ href: '/contacts/new', style: 'font-size:250%;color:#4099FF;margin-right:0.25em;margin-left:1em;border-bottom:none;' }
+									%i.fa.fa-envelope
+								
+								%a{ href: 'http://twitter.com/gkparishphilp', style: 'font-size:250%;color:#4099FF;margin-right:0.25em;border-bottom:none;', target: '_new' }
 									%i.fa.fa-twitter-square
 								%a{ href: 'http://facebook.com/gkparishphilp', style: 'font-size:250%;color:#4099FF;margin-right:0.25em;border-bottom:none;', target: '_new' }
 									%i.fa.fa-facebook-square
@@ -47,7 +50,7 @@
 									%i.fa.fa-github-square
 
 				.col-md-7.col-sm-12.col-md-offset-5.main-content
-					.hidden-sm.hidden-xs{ style: 'float:right;margin-top:-3em;'}
+					-#.hidden-sm.hidden-xs{ style: 'float:right;margin-top:-3em;'}
 						= render 'application/nav_list', args: { class: 'inline-list' }
 					.clearfix
 					= render 'application/flash'
@@ -58,8 +61,10 @@
 							Categories
 
 					.home-page-posts.animated.fadeIn
-						- SwellMedia::Article.active.order( publish_at: :desc ).limit( 6 ).each do |article|
+						- SwellMedia::Article.active.order( publish_at: :desc ).limit( 20 ).each do |article|
 							= render 'swell_media/articles/row', article: article
+						%a.pull-right{ href: '/blog?page=2', style: 'font-size:150%;border-bottom:1px solid #777;' }
+							More >>
 					.home-page-categories.hide.animated.fadeIn
 						.category.row
 							%section
@@ -71,8 +76,10 @@
 												.caption
 													%h4
 														= cat.name
+					
 
-		= render 'application/footer'
+
+					= render 'application/footer'
 
 		= render 'application/analytics'
 

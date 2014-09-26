@@ -28,10 +28,14 @@
 	font-size: 20px;
 }
 
-.pagination .page{
-	margin-right:1em;
+nav.pagination a{
+	border-bottom: none;
 }
 
-.pagination .last{
+.pagination .page{
+	margin:auto 0.5em;
+}
+
+.pagination .last, .first{
 	display:none;
 }

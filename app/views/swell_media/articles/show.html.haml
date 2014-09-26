@@ -42,9 +42,26 @@
 				= @media.reading_time[:minutes_only]
 				minute read.
 
-	%p
+	%p.content
 		= raw @media.content
 
+	.single-footer
+		.row
+			.col-xs-8
+				- if @media.tags.present?
+					.category-list
+						%p
+							Tagged:
+						%ul
+							- @media.tags.each do |tag|
+								%li
+									%a{ href: swell_media.articles_path( tagged: tag.name ) }
+										= tag.name
+			.col-xs-4
+				%a.btn.btn-writer.btn-like.pull-right{ style: 'margin-top: 2em;' }
+					%i.fa.fa-heart
+					Like
+		
 
 
 	- if @media.is_commentable?

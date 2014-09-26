@@ -1,28 +1,27 @@
 - cache( "row-#{article.cache_key}" ) do
 	.post
 		%section
-			.post-preview.col-xs-9.no-gutter
+			.post-preview.col-xs-10.no-gutter
 				%h2
 					%a{ href: article.url }
 						= article.title
+				%p.subtitle
+					= raw article.subtitle
 				%p.meta
 					= article.publish_at.to_date.to_s( :long )
 					- if article.category.present?
 						in
 						= link_to article.category, articles_path( category: article.category.slug )
-					%i.link-spacer
+					%br
 					%i.fa.fa-bookmark
 					About a 
 					= article.reading_time[:minutes_only]
 					minute read.
-				%p
-					- if article.description.present?
-						= raw article.description
-					- else
-						= truncate( article.content, length: 500, separator: ' ', escape: false )
+				
+					
 				
 
-			.col-xs-3
+			.col-xs-2.no-gutter
 				- if article.avatar.present?
 					%a{ href: article.url }
 						= image_tag article.avatar, alt: article.title, class: 'img img-responsive img-circle' #class: 'user-icon user-1'

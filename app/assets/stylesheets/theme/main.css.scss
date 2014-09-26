@@ -54,17 +54,28 @@ a:hover {
   transition: all, 300ms;
 }
 
-p{
-  a{
-    border-bottom: solid 1px #333;
-  }
+.single-content a{
+  border-bottom: solid 1px #333;
+}
+
+.title-section p.meta a:hover{
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: all, 300ms;
+  -moz-transition: all, 300ms;
+  -o-transition: all, 300ms;
+  transition: all, 300ms;
+}
+
+p.meta a{
+    border-bottom: solid 1px #ccc;
 }
 
 /* line 45, ../sass/_type.sass */
 h1,
 h2 {
   font-family: "Source Sans Pro", sans-serif;
-  font-weight: 700;
+  /*font-weight: 700;*/
 }
 
 /* line 50, ../sass/_type.sass */
@@ -1321,8 +1332,8 @@ ol li {
 }
 /* line 57, ../sass/partials/_main-content.sass */
 .post img {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }
 
 
@@ -1504,7 +1515,7 @@ blockquote {
 
 /* line 61, ../sass/partials/_single.sass */
 .single-footer {
-  padding: 40px 0;
+  padding: 0px 0;
 }
 /* line 64, ../sass/partials/_single.sass */
 .single-footer .liked-this-icon {
