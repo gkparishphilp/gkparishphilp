@@ -15,4 +15,4 @@
 //= require jquery-ui
 //= require_tree ./vendor
 //= require_tree ./theme
-//= require_tree .
+//= require_self

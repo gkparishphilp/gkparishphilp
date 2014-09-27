@@ -10,7 +10,6 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_tree ./theme
  *= require_self
  */
@@ -33,9 +32,9 @@ nav.pagination a{
 }
 
 .pagination .page{
-	margin:auto 0.5em;
+	margin: auto 0.5em;
 }
 
 .pagination .last, .first{
-	display:none;
+	display: none;
 }
