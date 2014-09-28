@@ -1,6 +1,6 @@
 - cache( @media ) do
 	- if @media.avatar.present?
-		.title-section{ style: 'margin-top:-16em;background-color:rgba(50,50,50,0.8);padding:2em;'}
+		.title-section{ style: 'margin-top:-14em;background-color:rgba(50,50,50,0.8);padding:0.5em 2em;'}
 			%h1{ style: 'color: #eee;' }
 				= @media.title
 
@@ -57,7 +57,7 @@
 								%li
 									%a{ href: swell_media.articles_path( tagged: tag.name ) }
 										= tag.name
-			.col-xs-4
+			-#.col-xs-4
 				%a.btn.btn-writer.btn-like.pull-right{ style: 'margin-top: 2em;' }
 					%i.fa.fa-heart
 					Like
