@@ -55,14 +55,14 @@
   }
 }
 
-/*@media (min-width: 720px) {
-  .hero-title-section {
-    margin-top:-200px;
-    background-color:rgba(50,50,50,0.8);
-    padding:0 2em 0.5em 2em;'
-  }
+.main-content.single-content h2, h3{
+	font-family: "Source Sans Pro", sans-serif;
+	font-weight: 700;
 }
-*/
+
+.main-content.single-content h2{
+	font-size: 32px;
+}
 
 .inline-list{
 	list-style: none;
