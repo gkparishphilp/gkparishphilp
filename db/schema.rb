@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924020616) do
+ActiveRecord::Schema.define(version: 20140929145223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,19 +78,20 @@ ActiveRecord::Schema.define(version: 20140924020616) do
     t.text     "description"
     t.text     "content"
     t.string   "slug"
-    t.boolean  "is_commentable",  default: true
-    t.boolean  "is_sticky",       default: false
-    t.boolean  "show_title",      default: true
+    t.boolean  "is_commentable",    default: true
+    t.boolean  "is_sticky",         default: false
+    t.boolean  "show_title",        default: true
     t.datetime "modified_at"
-    t.text     "keywords",        default: [],    array: true
+    t.text     "keywords",          default: [],    array: true
     t.string   "duration"
     t.integer  "price"
-    t.integer  "status",          default: 0
-    t.integer  "availability",    default: 0
+    t.integer  "status",            default: 0
+    t.integer  "availability",      default: 0
     t.datetime "publish_at"
     t.hstore   "properties"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cached_word_count"
   end
 
   add_index "media", ["category_id"], name: "index_media_on_category_id", using: :btree
