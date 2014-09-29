@@ -1,5 +1,6 @@
-PATH
-  remote: ../../playswell/engines/swell_media
+GIT
+  remote: git://github.com/playswell/swell_media.git
+  revision: ef0f6d51f794822bb2b9b671b2d75b966917df62
   specs:
     swell_media (0.0.1)
       acts-as-taggable-on
