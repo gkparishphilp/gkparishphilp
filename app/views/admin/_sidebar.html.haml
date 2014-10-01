@@ -1,0 +1,35 @@
+.cl-sidebar
+	.cl-toggle
+		%i.fa.fa-bars
+	.cl-navblock
+		.menu-space
+			.content
+				.sidebar-logo
+					.logo
+						%a{ href: '/' }
+							= ENV['APP_NAME']
+				.side-user
+					- if @twitter.present?
+						You have
+						= @twitter.followers_count
+						Followers
+					- else
+						%a{ href: main_app.user_omniauth_authorize_path( :twitter ), :class => "popup", :"data-width" => 600, :"data-height" => 400 }
+							%span.fa-stack.fa-lg
+								%i.fa.fa-circle.fa-stack-2x
+								%i.fa.fa-twitter.fa-stack-1x.fa-inverse
+							%span{ style: 'font-size:150%' }
+								Link Twitter
+				%ul.cl-vnavigation
+					%li
+						%a{ href: '/blog/admin' }
+							Blog
+					%li
+						%a{ href: '#' }
+							Journal
+					%li
+						%a{ href: '#' }
+							Notes
+					%li
+						%a{ href: '#' }
+							Tasks

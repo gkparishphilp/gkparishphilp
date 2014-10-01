@@ -8,6 +8,8 @@ class AdminController < SwellMedia::AdminController
 		@pages = SwellMedia::Page.order( publish_at: :desc ).limit( 10 )
 		@contacts = SwellMedia::Contact.order( created_at: :desc ).limit( 10 )
 
+		@twitter = #TwitterClient.new( current_user )
+
 		render layout: 'admin'
 	end
 

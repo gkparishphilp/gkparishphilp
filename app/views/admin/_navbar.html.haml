@@ -1,0 +1,30 @@
+#head-nav.navbar.navbar-default
+	.container-fluid
+		.navbar-collapse
+			%ul.nav.navbar-nav.navbar-right.user-nav
+				%li.dropdown.profile-menu
+					%a.dropdown-toggle{ href: '#', data: { toggle: :dropdown} }
+						= current_user.avatar_tag( width: 24 )
+						%span
+							= current_user
+						%b.caret
+					%ul.dropdown-menu
+
+						%li
+							%a{ href: '/logout' }
+								Logout
+			%ul.nav.navbar-nav.not-nav
+				%li{ class: set_css_if( controller: :articles ) }
+					%a{ href: swell_media.admin_articles_path }
+						Blog
+				%li{ class: set_css_if( controller: :pages ) }
+					%a{ href: swell_media.admin_pages_path }
+						Pages
+
+				%li{ class: set_css_if( controller: :categories ) }
+					%a{ href: swell_media.admin_categories_path }
+						Categories
+
+				%li{ class: set_css_if( controller: :contacts ) }
+					%a{ href: swell_media.admin_contacts_path }
+						Contacts

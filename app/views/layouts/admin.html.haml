@@ -1,0 +1,36 @@
+!!!strict
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8">
+/[if IE 8] <html class="no-js lt-ie9">
+//[if gt IE 8] <html class="no-js">
+%html{ lang: :en }
+	%head
+		= render 'application/html_head', args: {}
+		%link{ href: 'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800', rel: 'stylesheet', type: 'text/css' }
+
+		%link{ href: 'http://fonts.googleapis.com/css?family=Raleway:300,200,100', rel: 'stylesheet', type: 'text/css' }
+
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+		= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css'
+		= stylesheet_link_tag "swell_media/admin", media: "all"
+		= stylesheet_link_tag "admin", media: "all"
+		
+
+		= javascript_include_tag "swell_media/admin"
+		= javascript_include_tag '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
+		
+		
+
+	
+	%body
+		#cl-wrapper
+			= render 'admin/sidebar'
+			#pcont.container-fluid
+				= render 'admin/navbar'
+
+				.cl-mcont
+					= render 'application/flash'
+					= yield
+
+
