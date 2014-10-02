@@ -8,11 +8,17 @@
 					.logo
 						%a{ href: '/' }
 							= ENV['APP_NAME']
-				.side-user
+				.side-user{ style: 'padding: 0 20px;' }
 					- if @twitter.present?
-						You have
-						= @twitter.followers_count
-						Followers
+						%h3
+							Quick Add
+						= form_tag '#' do
+							.form-group
+								= text_area_tag :tweet, '', class: 'form-control'
+							.form-group.pull-right
+								= submit_tag 'Tweet', class: 'btn btn-primary btn-tiny'
+						.clearfix
+
 					- else
 						%a{ href: main_app.user_omniauth_authorize_path( :twitter ), :class => "popup", :"data-width" => 600, :"data-height" => 400 }
 							%span.fa-stack.fa-lg
@@ -21,9 +27,24 @@
 							%span{ style: 'font-size:150%' }
 								Link Twitter
 				%ul.cl-vnavigation
-					%li
-						%a{ href: '/blog/admin' }
+					%li.parent
+						%a{ href: '#' }
 							Blog
+						%ul.sub-menu
+							%li
+								%a{ href: '#' }
+									%i.fa.fa-plus-square
+									New
+							%li
+								%a{ href: '#' }
+									%i.fa.fa-gear
+									Admin
+							%li.separator
+							- SwellMedia::Article.order( publish_at: :desc ).limit( 10 ).each do |article|
+								%li
+									%a{ href: edit_article_path( article ) }
+										= image_tag article.avatar, width: 24, height: 24, class: 'img img-rounded'
+										= article.title
 					%li
 						%a{ href: '#' }
 							Journal
