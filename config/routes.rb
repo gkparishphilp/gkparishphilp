@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-	resources :admin, only: :index
+	resources :admin, only: :index do
+		post :add, on: :collection
+	end
 
 	devise_scope :user do
 		get '/login' => 'sessions#new', as: 'login'

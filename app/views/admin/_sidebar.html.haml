@@ -12,11 +12,11 @@
 					- if @twitter.present?
 						%h3
 							Quick Add
-						= form_tag '#' do
+						= form_tag main_app.add_admin_index_path do
 							.form-group
-								= text_area_tag :tweet, '', class: 'form-control'
+								= text_area_tag :content, '', class: 'form-control'
 							.form-group.pull-right
-								= submit_tag 'Tweet', class: 'btn btn-primary btn-tiny'
+								= submit_tag 'Add', class: 'btn btn-primary btn-tiny'
 						.clearfix
 
 					- else
