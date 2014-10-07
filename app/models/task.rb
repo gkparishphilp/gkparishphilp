@@ -1,4 +1,4 @@
-class task < ActiveRecord::Base
+class Task < ActiveRecord::Base
 
 	attr_accessor	:parent_id # for building parent associations in form_for
 

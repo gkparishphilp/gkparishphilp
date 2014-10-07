@@ -3,9 +3,30 @@
 .container-fluid
 	.row
 		.col-sm-6
+			.panel.panel-default
+				.panel-heading
+					.pull-left
+						%h3.panel-title
+							= link_to 'Tasks', main_app.admin_tasks_path
+					.pull-right
+						.btn.btn-sm.btn-success{ data: { toggle: :modal, target: '#new_task' } }
+							%i.fa.fa-plus-square
+							New
+					.clearfix
+				.panel-body
+					%table.table
+						- @tasks.each do |task|
+							%tr
+								%td
+									%a{ href: main_app.edit_task_path( task ) }
+										= task.name
+								%td{ style: 'width:20px;'}
+									%a{ href: main_app.edit_task_path( task ) }
+										%i.fa.fa-pencil
+				.panel-footer
 
-			
 
+		.col-sm-6
 			.panel.panel-default
 				.panel-heading
 					.pull-left
@@ -29,34 +50,6 @@
 								%td{ style: 'width:20px;'}
 									%a{ href: swell_media.preview_article_path( article ) }
 										%i.fa.fa-eye
-				.panel-footer
-
-
-		.col-sm-6
-			.panel.panel-default
-				.panel-heading
-					.pull-left
-						%h3.panel-title
-							= link_to 'Pages', swell_media.admin_pages_path
-					.pull-right
-						.btn.btn-sm.btn-success{ data: { toggle: :modal, target: '#new_page' } }
-							%i.fa.fa-plus-square
-							New
-					.clearfix
-				.panel-body
-					%table.table
-						- @pages.each do |page|
-							%tr
-								%td
-									%a{ href: swell_media.edit_page_path( page ) }
-										= page.slug
-								%td{ style: 'width:20px;'}
-									%a{ href: swell_media.edit_page_path( page ) }
-										%i.fa.fa-pencil
-								%td{ style: 'width:20px;'}
-									%a{ href: swell_media.preview_page_path( page ) }
-										%i.fa.fa-eye
-
 				.panel-footer
 
 		.col-sm-6

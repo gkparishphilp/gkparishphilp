@@ -16,4 +16,5 @@
 //= require jquery-ui
 //= require_tree ./admin/vendor
 //= require_tree ./admin/behavior
+//= require swell_media/admin
 //= require_self

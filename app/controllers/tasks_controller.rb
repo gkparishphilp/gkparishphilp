@@ -4,11 +4,11 @@ class TasksController < ApplicationController
 	before_filter :get_task, except: [ :admin, :create, :index ]
 
 	def admin
-		authorize( Article )
+		authorize( Task )
 		sort_by = params[:sort_by] || 'due_at'
 		sort_dir = params[:sort_dir] || 'desc'
 
-		@tasks = Task.order( "#{sort_by} #{sort_dir}" )
+		@tasks = Task.roots.order( "#{sort_by} #{sort_dir}" )
 
 		if params[:status].present? && params[:status] != 'all'
 			@tasks = eval "@tasks.#{params[:status]}"
@@ -30,9 +30,9 @@ class TasksController < ApplicationController
 				@task.move_to_child_of( parent_task )
 			end
 
-			pop_flash "Task created"
+			set_flash "Task created"
 		else
-			pop_flash "Task could not be saved.", :error, @task
+			set_flash "Task could not be saved.", :error, @task
 		end
 
 		redirect_to edit_task_path( @task )
@@ -45,6 +45,7 @@ class TasksController < ApplicationController
 
 	def edit
 		
+		render layout: 'admin'
 	end
 
 	def update
@@ -52,7 +53,7 @@ class TasksController < ApplicationController
 		@task.attributes = task_params
 		@task.completed_at = Time.zone.now if @task.completed?
 		@task.confirmed_at = Time.zone.now if @task.confirmed?
-		
+
 		if @task.save
 			set_flash 'Task Updated'
 			redirect_to edit_task_path( id: @task.id )

@@ -9,11 +9,9 @@ class AdminController < SwellMedia::AdminController
 
 	def index
 		raise Pundit::NotAuthorizedError, "not authorized" unless current_user.admin?
-		@articles = SwellMedia::Article.order( publish_at: :desc ).limit( 10 )
-		@pages = SwellMedia::Page.order( publish_at: :desc ).limit( 10 )
+		@tasks = Task.roots.order( due_at: :desc ).limit( 10 )
+		@articles = SwellMedia::Article.draft.order( publish_at: :desc ).limit( 10 )
 		@contacts = SwellMedia::Contact.order( created_at: :desc ).limit( 10 )
-
-		@twitter = TwitterClient.new( current_user )
 
 		render layout: 'admin'
 	end

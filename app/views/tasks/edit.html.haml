@@ -1,0 +1,53 @@
+
+
+.container-fluid
+	.row
+		.col-xs-10
+			%ul.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					= link_to 'Tasks', admin_tasks_path
+				%li
+					%strong
+						Edit
+						= @task.name
+		.col-xs-2
+			%a.btn.btn-success.btn-rad{ data: { toggle: :modal, target: '#new_task' } }
+				%i.fa.fa-plus-square
+				Add Sub
+	
+	= form_for @task do |f|
+	
+		.row
+			.col-xs-8
+				.form-group
+					= f.text_field :name, class: 'form-control input-lg'
+
+				.form-group
+					= f.text_area :content, class: 'form-control editor-small', rows: 8
+
+				- @task.children.each do |task|
+					= task.name
+					mark complete
+
+
+			.col-xs-4
+				.well
+					.form-group
+						= f.label :due_at
+						= f.text_field :due_at, value: @task.due_at.try( :strftime, "%d %B, %Y %H:%M" ), class: 'form-control datepicker'
+					.form-group
+						= f.label :priority
+						= f.text_field :priority, class: 'form-control'
+					.form-group
+						= f.label :status
+						= f.collection_select :status, Task.statuses, :first, :first, {}, class: 'form-control'
+					.form-group
+						= f.label :tag_list, 'Tags:'
+						= f.text_field :tag_list, placeholder: 'Separate tags with commas', class: 'form-control'
+					.form-group
+						= f.submit 'Update', class: 'btn btn-primary'
+
+
+= render 'new_modal', args: { parent_id: @task.id }

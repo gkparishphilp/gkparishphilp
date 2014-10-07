@@ -9,7 +9,7 @@
 						%a{ href: '/' }
 							= ENV['APP_NAME']
 				.side-user{ style: 'padding: 0 20px;' }
-					- if @twitter.present?
+					- if TwitterClient.new( current_user ).present?
 						%h3
 							Quick Add
 						= form_tag main_app.add_admin_index_path do
@@ -36,21 +36,43 @@
 									%i.fa.fa-plus-square
 									New
 							%li
-								%a{ href: '#' }
+								%a{ href: swell_media.admin_articles_path }
 									%i.fa.fa-gear
 									Admin
 							%li.separator
-							- SwellMedia::Article.order( publish_at: :desc ).limit( 10 ).each do |article|
+							- SwellMedia::Article.draft.order( publish_at: :desc ).limit( 10 ).each do |article|
 								%li
-									%a{ href: edit_article_path( article ) }
+									%a{ href: swell_media.edit_article_path( article ) }
 										= image_tag article.avatar, width: 24, height: 24, class: 'img img-rounded'
 										= article.title
-					%li
+					-#%li
 						%a{ href: '#' }
 							Journal
 					%li
-						%a{ href: '#' }
+						%a{ href: main_app.admin_notes_path }
 							Notes
-					%li
+					%li.parent
 						%a{ href: '#' }
 							Tasks
+						%ul.sub-menu
+							%li
+								%a{ href: '#' }
+									%i.fa.fa-plus-square
+									New
+							%li
+								%a{ href: main_app.admin_tasks_path }
+									%i.fa.fa-gear
+									Admin
+							%li.separator
+							- Task.roots.where( "status < 2" ).order( due_at: :desc ).limit( 10 ).each do |task|
+								%li
+									%a{ href: main_app.edit_task_path( task ) }
+										= task.name
+
+
+
+
+
+
+
+

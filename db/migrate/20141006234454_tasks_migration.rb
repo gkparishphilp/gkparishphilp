@@ -27,7 +27,7 @@ class TasksMigration < ActiveRecord::Migration
 			t.text				:content
 			t.integer			:status,					default: 0
 			t.integer			:availability,				default: 0
-			t.integer 			:priority, 					default: 0
+			t.integer 			:priority, 					default: 1
 			t.integer			:remind_time,				default: 0 # remind-before in minutes 0 = off
 			t.integer			:cached_duration,			default: 0 # total worked in minutes from timers
 			t.string 			:slug

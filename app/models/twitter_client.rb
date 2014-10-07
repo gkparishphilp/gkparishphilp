@@ -10,12 +10,24 @@ class TwitterClient
 		end
 	end
 
+	def followers
+		@client.followers
+	end
+
 	def followers_count
 		@client.user.followers_count
 	end
 
+	def following
+		@client.friends
+	end
+
 	def following_count
 		@client.user.friends_count
+	end
+
+	def non_followers_count
+		( client.friend_ids.to_a - client.follower_ids.to_a ).size
 	end
 
 	def tweet( msg )

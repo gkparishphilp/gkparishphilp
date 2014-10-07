@@ -1,0 +1,17 @@
+#new_task.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{ type: :button, 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
+					&times;
+				%h4.modal-title
+					New Task
+			= form_for Task.new do |f|
+				= f.hidden_field :parent_id, value: args[:parent_id]
+				.modal-body
+					= f.label :name
+					= f.text_field :name, class: 'form-control'
+				.modal-footer
+					%button.btn.btn-default{ type: :button, 'data-dismiss' => 'modal' }
+						Close
+					= f.submit 'Create', class: 'btn btn-primary'
