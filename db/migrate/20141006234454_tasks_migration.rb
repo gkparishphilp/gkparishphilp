@@ -26,7 +26,9 @@ class TasksMigration < ActiveRecord::Migration
 			t.text				:description
 			t.text				:content
 			t.integer			:status,					default: 0
+			t.integer			:availability,				default: 0
 			t.integer 			:priority, 					default: 0
+			t.integer			:remind_time,				default: 0 # remind-before in minutes 0 = off
 			t.integer			:cached_duration,			default: 0 # total worked in minutes from timers
 			t.string 			:slug
 			t.datetime			:due_at
@@ -37,7 +39,7 @@ class TasksMigration < ActiveRecord::Migration
 		end
 
 
-		resources :timers do
+		create_table :timers do |t|
 			t.references		:parent_obj, polymorphic: true
 			t.references		:user
 			t.datetime			:started_at
