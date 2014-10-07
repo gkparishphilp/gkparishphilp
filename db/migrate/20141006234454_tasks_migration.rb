@@ -7,6 +7,7 @@ class TasksMigration < ActiveRecord::Migration
 			t.text				:origin_url
 			t.string			:file 		# for carrier wave
 			t.string			:type
+			t.string			:sub_type
 			t.text				:description
 			t.text				:content
 			t.integer			:status, 					default: 0
