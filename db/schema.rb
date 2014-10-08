@@ -11,12 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924020616) do
+ActiveRecord::Schema.define(version: 20141006234454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
   enable_extension "hstore"
+
+  create_table "assets", force: true do |t|
+    t.integer  "parent_obj_id"
+    t.string   "parent_obj_type"
+    t.integer  "user_id"
+    t.text     "origin_url"
+    t.string   "file"
+    t.string   "type"
+    t.string   "sub_type"
+    t.text     "description"
+    t.text     "content"
+    t.integer  "status",          default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.integer  "user_id"
@@ -78,19 +93,21 @@ ActiveRecord::Schema.define(version: 20140924020616) do
     t.text     "description"
     t.text     "content"
     t.string   "slug"
-    t.boolean  "is_commentable",  default: true
-    t.boolean  "is_sticky",       default: false
-    t.boolean  "show_title",      default: true
+    t.boolean  "is_commentable",    default: true
+    t.boolean  "is_sticky",         default: false
+    t.boolean  "show_title",        default: true
     t.datetime "modified_at"
-    t.text     "keywords",        default: [],    array: true
+    t.text     "keywords",          default: [],    array: true
     t.string   "duration"
     t.integer  "price"
-    t.integer  "status",          default: 0
-    t.integer  "availability",    default: 0
+    t.integer  "status",            default: 0
+    t.integer  "availability",      default: 0
     t.datetime "publish_at"
     t.hstore   "properties"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cached_word_count"
+    t.integer  "cached_char_count"
   end
 
   add_index "media", ["category_id"], name: "index_media_on_category_id", using: :btree
@@ -154,6 +171,47 @@ ActiveRecord::Schema.define(version: 20140924020616) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "tasks", force: true do |t|
+    t.integer  "assigned_to_id"
+    t.integer  "requested_by_id"
+    t.integer  "category_id"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.string   "type"
+    t.string   "name"
+    t.text     "description"
+    t.text     "content"
+    t.integer  "status",          default: 0
+    t.integer  "availability",    default: 0
+    t.integer  "priority",        default: 1
+    t.integer  "remind_time",     default: 0
+    t.integer  "cached_duration", default: 0
+    t.string   "slug"
+    t.datetime "due_at"
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.datetime "confirmed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "timers", force: true do |t|
+    t.integer  "parent_obj_id"
+    t.string   "parent_obj_type"
+    t.integer  "user_id"
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.integer  "cached_duration"
+    t.text     "notes"
+    t.integer  "status",          default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "timers", ["parent_obj_id", "parent_obj_type"], name: "index_timers_on_parent_obj_id_and_parent_obj_type", using: :btree
+  add_index "timers", ["user_id"], name: "index_timers_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
