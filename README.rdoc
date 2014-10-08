@@ -1,5 +1,5 @@
 == README
 
-- use contacts#create form to optin the newsletter... If GIBBON_DEFAULT_LIST_ID set, and optin param present, email will be added to Mailchimp list
+
 
 
