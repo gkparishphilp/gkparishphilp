@@ -15,9 +15,9 @@
 		= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 	%body
 		%span.menu-trigger.side-writer-icon.animated.fadeInDown{ style: 'margin:1em;'}
-			%span.bar
-			%span.bar
-			%span.bar
+			%span
+				%p{ style: 'font-size: 150%;font-weight:700;color:#eee;margin-top:4px;margin-bottom:4px;'}
+					Gk
 		- if @media && @media.avatar.present?
 			.hero-image.hero-a-great-story{ style: "background: url(#{@media.avatar}) center center no-repeat;background-size:cover;"}
 				%noscript
