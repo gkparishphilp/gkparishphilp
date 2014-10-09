@@ -1,0 +1,20 @@
+#new_note.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{ type: :button, 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
+					&times;
+				%h4.modal-title
+					New Note
+			= form_for Note.new,url: main_app.notes_path do |f|
+				.modal-body
+					= f.label :title
+					= f.text_field :title, class: 'form-control'
+
+					= f.label :content
+					= f.text_area :content, class: 'form-control editor-small'
+
+				.modal-footer
+					%button.btn.btn-default{ type: :button, 'data-dismiss' => 'modal' }
+						Close
+					= f.submit 'Create', class: 'btn btn-primary'

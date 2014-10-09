@@ -14,17 +14,13 @@
 							%a{ href: '/logout' }
 								Logout
 			%ul.nav.navbar-nav.not-nav
-				%li{ class: set_css_if( controller: :articles ) }
-					%a{ href: swell_media.admin_articles_path }
-						Blog
-				%li{ class: set_css_if( controller: :pages ) }
-					%a{ href: swell_media.admin_pages_path }
-						Pages
+				%li
 
-				%li{ class: set_css_if( controller: :categories ) }
-					%a{ href: swell_media.admin_categories_path }
-						Categories
+					%a
+						%i.fa.fa-quote-left{ style: 'margin-right:6px;color:#ccc;' }
+						= Maxim.random.sanitized_content
+						%i.fa.fa-quote-right{ style: 'margin-left:6px;color:#ccc;' }
 
-				%li{ class: set_css_if( controller: :contacts ) }
-					%a{ href: swell_media.admin_contacts_path }
-						Contacts
+				
+
+				

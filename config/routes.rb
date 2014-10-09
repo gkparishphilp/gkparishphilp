@@ -4,6 +4,11 @@ Rails.application.routes.draw do
 		post :add, on: :collection
 	end
 
+	resources :maxims do
+		get :admin, on: :collection
+		get :preview, on: :member
+	end
+
 	resources :notes do
 		get :admin, on: :collection
 	end

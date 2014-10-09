@@ -6,19 +6,14 @@ gem 'rails', '4.1.1'
 gem 'pg'
 
 gem 'carrierwave_direct'
-gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails'
 gem 'dalli'
-gem 'devise'
 gem 'gibbon'
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
 gem 'mandrill-api'
 gem 'memcachier'
 gem 'newrelic_rpm'
 gem 'omniauth-twitter'
 gem 'sitemap_generator'
-gem 'turbolinks'
 gem 'twitter', '~> 5.0'
 gem 'jbuilder', '~> 2.0'
 
@@ -39,9 +34,9 @@ gem 'unicorn'
 gem 'rails_12factor', group: :production
 
 # prod
-gem 'swell_media', git: 'git://github.com/playswell/swell_media.git'
+# gem 'swell_media', git: 'git://github.com/playswell/swell_media.git'
 
 # dev
-# gem 'swell_media', path: '../../playswell/engines/swell_media', group: :development
+gem 'swell_media', path: '../../playswell/engines/swell_media', group: :development
 
 

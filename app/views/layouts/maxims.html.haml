@@ -1,0 +1,32 @@
+
+
+!!!strict
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8">
+/[if IE 8] <html class="no-js lt-ie9">
+//[if gt IE 8] <html class="no-js">
+%html{ lang: :en }
+	%head
+		= render 'application/html_head', args: {}
+		%meta{ name: 'google-site-verification', content: 'ZFV6HEx_XMaL2ERsCdechDSiVrqpA0hEEcPXYzEaEPY' }
+
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+		= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+	%body
+		%span.menu-trigger.side-writer-icon.animated.fadeInDown{ style: 'margin:1em;'}
+			%span
+				%p{ style: 'font-size: 150%;font-weight:700;color:#eee;margin-top:4px;margin-bottom:4px;'}
+					Gk
+		= yield
+		
+
+				
+
+
+		= render 'application/footer'
+
+		= render 'application/analytics'
+
+		= javascript_include_tag "application", "data-turbolinks-track" => true
+		= javascript_include_tag '//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'

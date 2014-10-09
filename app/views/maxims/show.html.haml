@@ -1,0 +1,13 @@
+.container-fluid.maxim-cover{ style: "background: url(#{@media.try( :avatar )}) center center no-repeat;background-size:cover;width:100%;min-height:650px;"}
+	%noscript
+		.no-js-menu
+			= render 'application/nav_list', args: {}
+	.row
+		#menu
+			= render 'application/nav_list', args: {}
+		.maxim.v-spacer
+		= raw @media.content
+		.maxim.v-spacer
+		
+
+

@@ -1408,23 +1408,29 @@ ol li {
   -o-background-size: cover;
   background-size: cover;
 }
+
+.maxim.v-spacer{ margin-top:50px; }
+
 @media (min-width: 768px) {
   /* line 1, ../sass/partials/_single.sass */
   .hero-image {
     height: 300px;
   }
+  .maxim.v-spacer{ margin-top:80px; }
 }
 @media (min-width: 992px) {
   /* line 1, ../sass/partials/_single.sass */
   .hero-image {
     height: 390px;
   }
+  .maxim.v-spacer{ margin-top:150px; }
 }
 @media (min-width: 1200px) {
   /* line 1, ../sass/partials/_single.sass */
   .hero-image {
     height: 460px;
   }
+  .maxim.v-spacer{ margin-top:200px; }
 }
 
 /* line 14, ../sass/partials/_single.sass */

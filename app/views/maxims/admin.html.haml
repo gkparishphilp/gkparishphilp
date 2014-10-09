@@ -1,0 +1,90 @@
+
+
+.container-fluid
+	.row
+		.col-xs-10
+			%ul.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					%strong
+						Maxims
+		.col-xs-2
+			%a.btn.btn-success{ data: { toggle: :modal, target: '#new_maxim' } }
+				%i.fa.fa-plus-square
+				New
+	.row
+		.col-xs-6
+			= raw paginate @media, params: { controller: 'maxims', action: 'admin' }
+		.col-xs-6
+			= form_tag main_app.admin_maxims_path, method: :get, class: 'pull-right form-inline' do
+				= select_tag :status, options_from_collection_for_select( Maxim.statuses, :first, :first, params[:status] ), { prompt: "-- All --", class: 'form-control' }
+				= text_field_tag :q, params[:q], class: 'form-control'
+				= submit_tag 'Search', class: 'btn btn-primary'
+				= link_to 'Clear', main_app.admin_maxims_path, class: 'btn btn-default btn-xs'
+
+	.row
+		.col-xs-12
+			%table.table
+				%thead
+					%th
+						%a{ href: main_app.admin_maxims_path( sort_by: 'content', sort_dir: 'asc' ) }
+							%i.fa.fa-arrow-up
+						%a{ href: main_app.admin_maxims_path( sort_by: 'content', sort_dir: 'desc' ) }
+							%i.fa.fa-arrow-down
+					%th
+						Publish
+						%a{ href: main_app.admin_maxims_path( sort_by: 'publish_at', sort_dir: 'asc' ) }
+							%i.fa.fa-arrow-up
+						%a{ href: main_app.admin_maxims_path( sort_by: 'publish_at', sort_dir: 'desc' ) }
+							%i.fa.fa-arrow-down
+					%th
+						Words
+						%a{ href: main_app.admin_maxims_path( sort_by: 'cached_word_count', sort_dir: 'asc' ) }
+							%i.fa.fa-arrow-up
+						%a{ href: main_app.admin_maxims_path( sort_by: 'cached_word_count', sort_dir: 'desc' ) }
+							%i.fa.fa-arrow-down
+					%th Status
+					%th Category
+					%th Tags
+					%th
+				%tbody
+					- @media.each do |maxim|
+						%tr
+							%td
+								= link_to maxim.sanitized_content, main_app.edit_maxim_path( maxim.id )
+							%td
+								= maxim.publish_at.to_s( :slashed_time )
+							%td
+								= maxim.try( :cached_word_count ) || 'N/A'
+							%td
+								.badge{ class: maxim.status }
+									= maxim.status
+							%td
+								= maxim.category.try( :name ) || 'None'
+							%td
+								= maxim.tag_list
+							%td
+								.btn-group
+									%button.btn.btn-mini.btn-default.dropdown-toggle{ data: { toggle: :dropdown } }
+										%i.fa.fa-cog
+										%b.caret
+									%ul.dropdown-menu
+										%li
+											%a{ href: main_app.edit_maxim_path( maxim ) }
+												%i.fa.fa-pencil
+												Edit
+										%li
+											%a{ href: main_app.preview_maxim_path( maxim.id ) }
+												%i.fa.fa-eye
+												Preview
+										%li.divider
+										%li
+											%a{ href: main_app.maxim_path( maxim ), data: { method: 'delete', confirm: 'Are you sure?' } }
+												%i.fa.fa-trash-o
+												Delete!
+
+
+
+
+= render 'new_modal'

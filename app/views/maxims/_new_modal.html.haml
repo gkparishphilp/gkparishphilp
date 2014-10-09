@@ -1,0 +1,17 @@
+#new_maxim.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{ type: :button, 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
+					&times;
+				%h4.modal-title
+					New Maxim
+			= form_for Maxim.new,url: main_app.maxims_path do |f|
+				.modal-body
+					= f.label :content
+					= f.text_area :content, class: 'form-control'
+
+				.modal-footer
+					%button.btn.btn-default{ type: :button, 'data-dismiss' => 'modal' }
+						Close
+					= f.submit 'Create', class: 'btn btn-primary'

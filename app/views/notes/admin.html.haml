@@ -1,0 +1,51 @@
+
+
+.container-fluid
+	.row
+		.col-xs-10
+			%ul.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					%strong
+						Notes
+		.col-xs-2
+			%a.btn.btn-success{ data: { toggle: :modal, target: '#new_note' } }
+				%i.fa.fa-plus-square
+				New
+	.row
+		.col-xs-6
+			= raw paginate @media, params: { controller: 'notes', action: 'admin' }
+		.col-xs-6
+			= form_tag main_app.admin_notes_path, method: :get, class: 'pull-right form-inline' do
+				= text_field_tag :q, params[:q], class: 'form-control'
+				= submit_tag 'Search', class: 'btn btn-primary'
+				= link_to 'Clear', main_app.admin_maxims_path, class: 'btn btn-default btn-xs'
+
+	%ul.cbp_tmtimeline
+		- @media.each do |note|
+			%li
+				%time.cbp_tmtime{ datetime: note.publish_at.strftime('%Y-%m-%d %H:%M') }
+					%span
+						= note.publish_at.strftime('%-m/%-d/%y')
+					%span
+						= note.publish_at.strftime( '%H:%M' )
+				.cbp_tmicon
+					%i.fa.fa-pencil
+				.cbp_tmlabel
+					.pull-right
+						%a{ href: main_app.edit_note_path( note ), style: 'color: #aaa;' }
+							%i.fa.fa-pencil
+							edit
+						|
+						%a{ href: main_app.note_path( note, permanent: true ), style: 'color: #aaa;', data: { method: :delete } }
+							%i.fa.fa-trash
+							delete
+					%h2
+						= note.title
+					.note-content
+						= raw note.content
+					
+
+
+= render 'new_modal'

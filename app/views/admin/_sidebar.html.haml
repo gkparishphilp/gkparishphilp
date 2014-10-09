@@ -45,12 +45,21 @@
 									%a{ href: swell_media.edit_article_path( article ) }
 										= image_tag article.avatar, width: 24, height: 24, class: 'img img-rounded'
 										= article.title
-					-#%li
-						%a{ href: '#' }
-							Journal
+					%li
+						%a{ href: swell_media.admin_categories_path }
+							Categories
+					%li
+						%a{ href: swell_media.admin_contacts_path }
+							Contacts
+					%li
+						%a{ href: main_app.admin_maxims_path }
+							Maxims
 					%li
 						%a{ href: main_app.admin_notes_path }
 							Notes
+					%li
+						%a{ href: swell_media.admin_pages_path }
+							Pages
 					%li.parent
 						%a{ href: '#' }
 							Tasks
