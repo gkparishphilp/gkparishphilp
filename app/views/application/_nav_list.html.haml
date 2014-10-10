@@ -15,3 +15,17 @@
 		%i.fa.fa-envelope
 			%a{ href: '/contacts/new' }
 				Contact
+	%li
+		%i.fa.fa-random
+			%a{ href: main_app.random_maxims_path }
+				Serendipity
+	- if current_user.try( :admin? )
+		%li.separator{ style: 'border-bottom:1px #555 solid;' }
+		%li
+			%i.fa.fa-dashboard
+				%a{ href: '/admin' }
+					Admin
+		%li
+			%i.fa.fa-sign-out
+				%a{ href: '/logout' }
+					Logout

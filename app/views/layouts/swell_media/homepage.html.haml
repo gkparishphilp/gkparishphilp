@@ -62,8 +62,11 @@
 							Categories
 
 					.home-page-posts.animated.fadeIn
-						- SwellMedia::Article.active.order( publish_at: :desc ).limit( 20 ).each do |article|
-							= render 'swell_media/articles/row', article: article
+						- SwellMedia::Media.where( type: [ 'SwellMedia::Article', 'Maxim' ] ).published.order( publish_at: :desc ).limit( 20 ).each do |article|
+							- if article.is_a?( Maxim )
+								= render 'maxims/row', maxim: article
+							- else
+								= render 'swell_media/articles/row', article: article
 						%a.pull-right{ href: '/blog?page=2', style: 'font-size:150%;border-bottom:1px solid #777;' }
 							More >>
 					.home-page-categories.hide.animated.fadeIn

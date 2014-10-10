@@ -56,6 +56,14 @@
   }
 }
 
+.maxim-box{
+  color:#fff;
+  width:70%;
+  margin: 0 auto;
+  background:rgba(0,0,0,0.3);
+  padding:50px;
+}
+
 .main-content.single-content h2, h3{
 	font-family: "Source Sans Pro", sans-serif;
 	font-weight: 700;

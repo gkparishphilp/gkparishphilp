@@ -1,0 +1,19 @@
+- cache( "row-#{maxim.cache_key}" ) do
+	.post
+		%section
+			.col-xs-2.no-gutter
+				- if maxim.avatar.present?
+					%a{ href: maxim.url }
+						= image_tag maxim.avatar, alt: maxim.sanitized_content, class: 'img img-responsive img-circle'
+			.post-preview.col-xs-10.no-gutter
+				%p.subtitle
+					= link_to maxim.sanitized_content, maxim.url
+				%p.meta
+					= maxim.publish_at.to_date.to_s( :long )
+					
+				
+					
+				
+
+			
+			

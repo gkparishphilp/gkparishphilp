@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 	resources :maxims do
 		get :admin, on: :collection
 		get :preview, on: :member
+		get :random, on: :collection
 	end
 
 	resources :notes do

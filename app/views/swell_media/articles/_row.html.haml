@@ -12,11 +12,12 @@
 					- if article.category.present?
 						in
 						= link_to article.category, articles_path( category: article.category.slug )
-					%br
-					%i.fa.fa-bookmark
-					About a 
-					= article.reading_time[:minutes_only]
-					minute read.
+					- if article.reading_time[:minutes_only] > 0
+						%br
+						%i.fa.fa-bookmark
+						About a 
+						= article.reading_time[:minutes_only]
+						minute read.
 				
 					
 				

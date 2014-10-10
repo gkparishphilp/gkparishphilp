@@ -9,5 +9,10 @@
 		= raw @media.content
 		.maxim.v-spacer
 		
-
+- if @media.is_commentable?
+	.container-fluid
+		.row
+			.col-xs-10.col-xs-offset-1
+				%section#comments{ style: 'margin-top:2em;' }
+					= render 'application/disqus'
 

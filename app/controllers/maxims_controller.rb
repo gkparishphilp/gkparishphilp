@@ -17,6 +17,10 @@ class MaximsController < SwellMedia::MediaController
 		end
 	end
 
+	def random
+		redirect_to Maxim.published.random.url
+	end
+
 	def update
 		authorize( @media )
 			
