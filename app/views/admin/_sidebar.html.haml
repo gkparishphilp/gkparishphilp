@@ -45,21 +45,89 @@
 									%a{ href: swell_media.edit_article_path( article ) }
 										= image_tag article.avatar, width: 24, height: 24, class: 'img img-rounded'
 										= article.title
-					%li
-						%a{ href: swell_media.admin_categories_path }
+					%li.parent
+						%a{ href: '#' }
 							Categories
-					%li
-						%a{ href: swell_media.admin_contacts_path }
+						%ul.sub-menu
+							%li
+								%a{ href: '#' }
+									%i.fa.fa-plus-square
+									New
+							%li
+								%a{ href: swell_media.admin_categories_path }
+									%i.fa.fa-gear
+									Admin
+							%li.separator
+							- SwellMedia::Category.order( created_at: :desc ).limit( 10 ).each do |category|
+								%li
+									%a{ href: swell_media.edit_category_path( category ) }
+										= image_tag category.avatar, width: 24, height: 24, class: 'img img-rounded'
+										= category.name
+					%li.parent
+						%a{ href: '#' }
 							Contacts
-					%li
-						%a{ href: main_app.admin_maxims_path }
+						%ul.sub-menu
+							%li
+								%a{ href: swell_media.admin_articles_path }
+									%i.fa.fa-gear
+									Admin
+							%li.separator
+							- SwellMedia::Contact.order( created_at: :desc ).limit( 10 ).each do |contact|
+								%li
+									%a{ href: swell_media.edit_contact_path( contact ) }
+										= contact.email
+					%li.parent
+						%a{ href: '#' }
 							Maxims
-					%li
-						%a{ href: main_app.admin_notes_path }
+						%ul.sub-menu
+							%li
+								%a{ href: '#' }
+									%i.fa.fa-plus-square
+									New
+							%li
+								%a{ href: main_app.admin_maxims_path }
+									%i.fa.fa-gear
+									Admin
+							%li.separator
+							- Maxim.order( publish_at: :desc ).limit( 10 ).each do |maxim|
+								%li
+									%a{ href: main_app.edit_maxim_path( maxim ) }
+										= truncate( maxim.sanitized_content, length: 36 )
+					%li.parent
+						%a{ href: '#' }
 							Notes
-					%li
-						%a{ href: swell_media.admin_pages_path }
+						%ul.sub-menu
+							%li
+								%a{ href: '#' }
+									%i.fa.fa-plus-square
+									New
+							%li
+								%a{ href: main_app.admin_notes_path }
+									%i.fa.fa-gear
+									Admin
+							%li.separator
+							- Note.order( publish_at: :desc ).limit( 10 ).each do |note|
+								%li
+									%a{ href: main_app.edit_note_path( note ) }
+										= note.title
+					%li.parent
+						%a{ href: '#' }
 							Pages
+						%ul.sub-menu
+							%li
+								%a{ href: '#' }
+									%i.fa.fa-plus-square
+									New
+							%li
+								%a{ href: swell_media.admin_pages_path }
+									%i.fa.fa-gear
+									Admin
+							%li.separator
+							- SwellMedia::Page.order( publish_at: :desc ).limit( 10 ).each do |page|
+								%li
+									%a{ href: swell_media.edit_page_path( page ) }
+										= page.title
+
 					%li.parent
 						%a{ href: '#' }
 							Tasks
@@ -77,6 +145,17 @@
 								%li
 									%a{ href: main_app.edit_task_path( task ) }
 										= task.name
+
+
+
+				.inspiration{ style: 'width:80%; margin:24px auto; background:rgba(0,0,0,0.3);padding:12px;color:#555;font-size:120%'}
+					%i.fa.fa-quote-left{ style: 'color:#333;' }
+					%br
+					%span{ style: 'margin-left:24px;'}
+						= Maxim.random.sanitized_content
+					%br
+					%i.fa.fa-quote-right.pull-right{ style: 'color:#333;' }
+					.clearfix
 
 
 
