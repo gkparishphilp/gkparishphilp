@@ -10,8 +10,8 @@ class TasksMigration < ActiveRecord::Migration
 
 			t.string		:type # jic want to sti someday....
 			t.string		:sub_type # to use e.g. to designate one image as primary avatar
-			t.string		:media_use, default: nil
-			t.string		:media_type, default: 'image'
+			t.string		:use, default: nil  # 
+			t.string		:asset_type, default: 'image'
 
 			t.string		:origin_name
 			t.string		:origin_identifier
@@ -30,6 +30,7 @@ class TasksMigration < ActiveRecord::Migration
 			t.timestamps
 		end
 		add_index :assets, [ :parent_obj_type, :parent_obj_id ]
+		add_index :assets, [:parent_obj_id, :parent_obj_type, :asset_type, :use], name: 'swell_media_asset_use_index'
 
 
 		create_table :tasks do |t|
@@ -69,6 +70,8 @@ class TasksMigration < ActiveRecord::Migration
 		end
 		add_index :timers, [ :parent_obj_id, :parent_obj_type ]
 		add_index :timers, :user_id
+
+		
 
 	end
 end

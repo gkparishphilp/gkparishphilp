@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006234454) do
+ActiveRecord::Schema.define(version: 20141010201353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,16 +22,29 @@ ActiveRecord::Schema.define(version: 20141006234454) do
     t.integer  "parent_obj_id"
     t.string   "parent_obj_type"
     t.integer  "user_id"
-    t.text     "origin_url"
-    t.string   "file"
+    t.string   "title"
+    t.string   "description"
+    t.text     "content"
     t.string   "type"
     t.string   "sub_type"
-    t.text     "description"
-    t.text     "content"
-    t.integer  "status",          default: 0
+    t.string   "use"
+    t.string   "asset_type",        default: "image"
+    t.string   "origin_name"
+    t.string   "origin_identifier"
+    t.string   "origin_url"
+    t.string   "upload"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "duration"
+    t.integer  "status",            default: 0
+    t.integer  "availability",      default: 0
+    t.hstore   "properties"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "assets", ["parent_obj_id", "parent_obj_type", "asset_type", "use"], name: "swell_media_asset_use_index", using: :btree
+  add_index "assets", ["parent_obj_type", "parent_obj_id"], name: "index_assets_on_parent_obj_type_and_parent_obj_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.integer  "user_id"
@@ -108,11 +121,13 @@ ActiveRecord::Schema.define(version: 20141006234454) do
     t.datetime "updated_at"
     t.integer  "cached_word_count"
     t.integer  "cached_char_count"
+    t.tsvector "search_vector"
   end
 
   add_index "media", ["category_id"], name: "index_media_on_category_id", using: :btree
   add_index "media", ["managed_by_id"], name: "index_media_on_managed_by_id", using: :btree
   add_index "media", ["public_id"], name: "index_media_on_public_id", using: :btree
+  add_index "media", ["search_vector"], name: "media_search_idx", using: :gin
   add_index "media", ["slug", "type"], name: "index_media_on_slug_and_type", using: :btree
   add_index "media", ["slug"], name: "index_media_on_slug", unique: true, using: :btree
   add_index "media", ["status", "availability"], name: "index_media_on_status_and_availability", using: :btree

@@ -38,6 +38,6 @@ class MaximsController < SwellMedia::MediaController
 	private
 
 		def maxim_params
-			params.require( :maxim ).permit( :title, :subtitle, :content, :status, :publish_at, :is_commentable, :user_id, :tag_list, :avatar )
+			params.require( :maxim ).permit( :title, :subtitle, :content, :status, :publish_at, :is_commentable, :user_id, :tag_list, :avatar, :avatar_asset_file, :avatar_asset_url )
 		end
 end
