@@ -6,7 +6,7 @@
 					&times;
 				%h4.modal-title
 					New Task
-			= form_for Task.new do |f|
+			= form_for Task.new, url: main_app.tasks_path do |f|
 				= f.hidden_field :parent_id, value: args[:parent_id]
 				.modal-body
 					= f.label :name

@@ -32,13 +32,15 @@
 							Blog
 						%ul.sub-menu
 							%li
-								%a{ href: '#' }
-									%i.fa.fa-plus-square
-									New
-							%li
 								%a{ href: swell_media.admin_articles_path }
 									%i.fa.fa-gear
 									Admin
+
+							%li
+								%a{ href: '#', data: { toggle: :modal, target: '#new_article' } }
+									%i.fa.fa-plus-square
+									New
+							
 							%li.separator
 							- SwellMedia::Article.draft.order( publish_at: :desc ).limit( 10 ).each do |article|
 								%li
@@ -50,13 +52,14 @@
 							Categories
 						%ul.sub-menu
 							%li
-								%a{ href: '#' }
-									%i.fa.fa-plus-square
-									New
-							%li
 								%a{ href: swell_media.admin_categories_path }
 									%i.fa.fa-gear
 									Admin
+							%li
+								%a{ href: '#', data: { toggle: :modal, target: '#new_category' } }
+									%i.fa.fa-plus-square
+									New
+							
 							%li.separator
 							- SwellMedia::Category.order( created_at: :desc ).limit( 10 ).each do |category|
 								%li
@@ -81,13 +84,14 @@
 							Maxims
 						%ul.sub-menu
 							%li
-								%a{ href: '#' }
-									%i.fa.fa-plus-square
-									New
-							%li
 								%a{ href: main_app.admin_maxims_path }
 									%i.fa.fa-gear
 									Admin
+							%li
+								%a{ href: '#', data: { toggle: :modal, target: '#new_maxim' } }
+									%i.fa.fa-plus-square
+									New
+							
 							%li.separator
 							- Maxim.order( publish_at: :desc ).limit( 10 ).each do |maxim|
 								%li
@@ -98,13 +102,14 @@
 							Notes
 						%ul.sub-menu
 							%li
-								%a{ href: '#' }
-									%i.fa.fa-plus-square
-									New
-							%li
 								%a{ href: main_app.admin_notes_path }
 									%i.fa.fa-gear
 									Admin
+							%li
+								%a{ href: '#', data: { toggle: :modal, target: '#new_note' } }
+									%i.fa.fa-plus-square
+									New
+							
 							%li.separator
 							- Note.order( publish_at: :desc ).limit( 10 ).each do |note|
 								%li
@@ -115,13 +120,14 @@
 							Pages
 						%ul.sub-menu
 							%li
-								%a{ href: '#' }
-									%i.fa.fa-plus-square
-									New
-							%li
 								%a{ href: swell_media.admin_pages_path }
 									%i.fa.fa-gear
 									Admin
+							%li
+								%a{ href: '#', data: { toggle: :modal, target: '#new_page' } }
+									%i.fa.fa-plus-square
+									New
+							
 							%li.separator
 							- SwellMedia::Page.order( publish_at: :desc ).limit( 10 ).each do |page|
 								%li
@@ -133,13 +139,14 @@
 							Tasks
 						%ul.sub-menu
 							%li
-								%a{ href: '#' }
-									%i.fa.fa-plus-square
-									New
-							%li
 								%a{ href: main_app.admin_tasks_path }
 									%i.fa.fa-gear
 									Admin
+							%li
+								%a{ href: '#', data: { toggle: :modal, target: '#new_task' } }
+									%i.fa.fa-plus-square
+									New
+							
 							%li.separator
 							- Task.roots.where( "status < 2" ).order( due_at: :desc ).limit( 10 ).each do |task|
 								%li
@@ -158,7 +165,12 @@
 					.clearfix
 
 
-
+= render 'swell_media/articles/new_modal'
+= render 'swell_media/categories/new_modal'
+= render 'swell_media/pages/new_modal'
+= render 'maxims/new_modal'
+= render 'notes/new_modal'
+= render 'tasks/new_modal', args: {}
 
 
 
