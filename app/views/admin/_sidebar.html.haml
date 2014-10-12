@@ -159,7 +159,7 @@
 					%i.fa.fa-quote-left{ style: 'color:#333;' }
 					%br
 					%span{ style: 'margin-left:24px;'}
-						= Maxim.random.sanitized_content
+						= Maxim.random.try( :sanitized_content )
 					%br
 					%i.fa.fa-quote-right.pull-right{ style: 'color:#333;' }
 					.clearfix
