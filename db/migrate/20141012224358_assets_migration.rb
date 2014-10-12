@@ -1,6 +1,6 @@
 class AssetsMigration < ActiveRecord::Migration
-	drop table :assets
-	
+	drop_table :assets
+
 	create_table :assets do |t|
 		t.references 	:parent_obj, polymorphic: true
 		t.references	:user
