@@ -1,4 +1,7 @@
 class TasksMigration < ActiveRecord::Migration
+	drop_table :tasks
+	drop_table :timers
+	
 	create_table :tasks do |t|
 		t.references		:assigned_to
 		t.references		:requested_by
