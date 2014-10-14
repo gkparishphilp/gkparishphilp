@@ -12,6 +12,7 @@
  *
  *= require_tree ./theme
  *= require_tree ./vendor
+ *= require_tree ./songs
  *= require_self
  */
 

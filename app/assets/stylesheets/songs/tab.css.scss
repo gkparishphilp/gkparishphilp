@@ -1,0 +1,16 @@
+
+.song p{
+	font-family: courier;
+	margin-bottom: 1em;
+}
+
+.song .chord {
+  position: relative;
+  top: -1.2em;
+  display:inline-block;
+  width: 0;
+  overflow:visible;
+  white-space: nowrap;
+  text-shadow:#CCC -1px 1px;
+  font-weight:bold;
+}
