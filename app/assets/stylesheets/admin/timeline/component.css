@@ -42,12 +42,12 @@
 }
 
 .cbp_tmtimeline > li .cbp_tmtime span:first-child {
-	font-size: 2em;
+	font-size: 1.5em;
 	/*color: #bdd0db;*/
 }
 
 .cbp_tmtimeline > li .cbp_tmtime span:last-child {
-	font-size: 0.9em;
+	font-size: 0.75em;
 	/*color: #3594cb;*/
 }
 
