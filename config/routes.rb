@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 		get :admin, on: :collection
 	end
 
+	resources :songs do
+		get :admin, on: :collection
+		get :preview, on: :member
+	end
+
 	resources :tasks do
 		get :admin, on: :collection
 	end

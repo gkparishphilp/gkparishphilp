@@ -136,6 +136,25 @@
 
 					%li.parent
 						%a{ href: '#' }
+							Songs
+						%ul.sub-menu
+							%li
+								%a{ href: main_app.admin_songs_path }
+									%i.fa.fa-gear
+									Admin
+							%li
+								%a{ href: '#', data: { toggle: :modal, target: '#new_song' } }
+									%i.fa.fa-plus-square
+									New
+							
+							%li.separator
+							- Song.order( publish_at: :desc ).limit( 10 ).each do |song|
+								%li
+									%a{ href: main_app.edit_song_path( song ) }
+										= song.title
+
+					%li.parent
+						%a{ href: '#' }
 							Tasks
 						%ul.sub-menu
 							%li
@@ -170,6 +189,7 @@
 = render 'swell_media/pages/new_modal'
 = render 'maxims/new_modal'
 = render 'notes/new_modal'
+= render 'songs/new_modal'
 = render 'tasks/new_modal', args: {}
 
 

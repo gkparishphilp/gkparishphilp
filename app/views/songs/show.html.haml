@@ -1,0 +1,19 @@
+- cache( @media ) do
+	.container
+		.row
+			.col-xs-12
+				%h1{ style: "font-family: 'Amatic SC', cursive;font-size:600%;" }
+					= raw @media.title
+				%h3{ style: "font-family: 'Homemade Apple', cursive;" }
+					= raw @media.properties['artist']
+	
+		.row
+			.col-xs-12
+				= raw @media.content
+	
+- if @media.is_commentable?
+	.container-fluid
+		.row
+			.col-xs-10.col-xs-offset-1
+				%section#comments{ style: 'margin-top:2em;' }
+					= render 'application/disqus'

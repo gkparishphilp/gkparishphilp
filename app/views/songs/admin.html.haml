@@ -1,0 +1,78 @@
+
+
+.container-fluid
+	.row
+		.col-xs-10
+			%ul.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					%strong
+						Songs
+		.col-xs-2
+			%a.btn.btn-success{ data: { toggle: :modal, target: '#new_song' } }
+				%i.fa.fa-plus-square
+				New
+	.row
+		.col-xs-6
+			= raw paginate @media, params: { controller: 'songs', action: 'admin' }
+		.col-xs-6
+			= form_tag main_app.admin_songs_path, method: :get, class: 'pull-right form-inline' do
+				= select_tag :status, options_from_collection_for_select( Maxim.statuses, :first, :first, params[:status] ), { prompt: "-- All --", class: 'form-control' }
+				= text_field_tag :q, params[:q], class: 'form-control'
+				= submit_tag 'Search', class: 'btn btn-primary'
+				= link_to 'Clear', main_app.admin_songs_path, class: 'btn btn-default btn-xs'
+
+	.row
+		.col-xs-12
+			%table.table
+				%thead
+					%th
+						%a{ href: main_app.admin_songs_path( sort_by: 'title', sort_dir: 'asc' ) }
+							%i.fa.fa-arrow-up
+						%a{ href: main_app.admin_songs_path( sort_by: 'title', sort_dir: 'desc' ) }
+							%i.fa.fa-arrow-down
+					%th
+						Artist
+					%th Status
+					%th Category
+					%th Tags
+					%th
+				%tbody
+					- @media.each do |song|
+						%tr
+							%td
+								= link_to song.title, main_app.edit_song_path( song.id )
+							%td
+								= song.properties['artist']
+							%td
+								.badge{ class: song.status }
+									= song.status
+							%td
+								= song.category.try( :name ) || 'None'
+							%td
+								= song.tag_list
+							%td
+								.btn-group
+									%button.btn.btn-mini.btn-default.dropdown-toggle{ data: { toggle: :dropdown } }
+										%i.fa.fa-cog
+										%b.caret
+									%ul.dropdown-menu
+										%li
+											%a{ href: main_app.edit_song_path( song ) }
+												%i.fa.fa-pencil
+												Edit
+										%li
+											%a{ href: main_app.preview_song_path( song.id ) }
+												%i.fa.fa-eye
+												Preview
+										%li.divider
+										%li
+											%a{ href: main_app.song_path( song ), data: { method: 'delete', confirm: 'Are you sure?' } }
+												%i.fa.fa-trash-o
+												Delete!
+
+
+
+
+= render 'new_modal'
