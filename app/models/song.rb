@@ -8,4 +8,10 @@ class Song < SwellMedia::Media
 			''
 		end
 	end
+
+
+	private
+		def set_keywords_and_tags
+			
+		end
 end
