@@ -1,10 +1,10 @@
 - cache( @media ) do
-	.container
+	.container[@media]
 		.row
 			.col-xs-12
 				%h1{ style: "font-family: 'Amatic SC', cursive;font-size:600%;" }
 					= raw @media.title
-				%h3{ style: "font-family: 'Homemade Apple', cursive;" }
+				%h3.song-artist{ style: "font-family: 'Homemade Apple', cursive;" }
 					= raw @media.properties['artist']
 	
 		.row

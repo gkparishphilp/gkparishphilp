@@ -1,13 +1,40 @@
 
+h3.song-artist{
+  border-bottom:1px #ddd solid;
+  margin-bottom: 2em;
+}
 
-.song p{
+p.song-section{
+  font-family: 'Droid Sans Mono', monospace, courier;
+  font-weight:bold;
+  font-size: 16px;
+}
+
+p.song-chords{
   font-family: 'Droid Sans Mono', monospace, courier;
   white-space: pre;
 	margin-bottom: 1em;
   font-size: 16px;
 }
 
-.song .chord {
+p.song-verse{
+  font-family: 'Droid Sans Mono', monospace, courier;
+  white-space: pre;
+  font-size: 16px;
+}
+
+p.song-tab{
+  font-family: 'Droid Sans Mono', monospace, courier;
+  white-space: pre;
+  font-size: 14px;
+}
+
+
+
+
+
+
+.song-chords .chord {
   position: relative;
   top: -1.2em;
   display:inline-block;
