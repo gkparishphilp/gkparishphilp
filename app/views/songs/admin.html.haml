@@ -44,7 +44,7 @@
 							%td
 								= link_to song.title, main_app.edit_song_path( song.id )
 							%td
-								= song.properties['artist']
+								= song.artist
 							%td
 								.badge{ class: song.status }
 									= song.status
