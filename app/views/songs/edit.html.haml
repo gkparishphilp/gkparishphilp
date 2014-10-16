@@ -27,7 +27,7 @@
 				= f.fields_for :properties do |p|
 					.form-group
 						= p.label :artist
-						= p.text_field :artist, value: @media.properties['artist'], class: 'form-control'
+						= p.text_field :artist, value: @media.artist, class: 'form-control'
 
 				.form-group
 					= f.text_area :content, class: 'form-control editor-full', rows: 12
