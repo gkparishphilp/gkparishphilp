@@ -62,7 +62,7 @@
 							Categories
 
 					.home-page-posts.animated.fadeIn
-						- SwellMedia::Media.where( type: [ 'SwellMedia::Article', 'Maxim' ] ).published.order( publish_at: :desc ).limit( 20 ).each do |article|
+						- SwellMedia::Media.where( type: [ 'SwellMedia::Article', 'Maxim' ] ).published.order( publish_at: :desc ).limit( 25 ).each do |article|
 							- if article.is_a?( Maxim )
 								= render 'maxims/row', maxim: article
 							- else
