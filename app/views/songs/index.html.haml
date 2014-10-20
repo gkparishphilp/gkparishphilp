@@ -1,1 +1,21 @@
-index.html.haml
+
+- if @artist.present?
+	%h1
+		= pluralize @songs.count, 'Song'
+		by
+		= @artist
+
+- elsif @tagged.present?
+	%h1
+		= pluralize @songs.count, 'Song'
+		tagged
+		= "'#{@tagged}'"
+- else
+	%h1
+		= pluralize @songs.count, 'Song'
+
+
+= raw paginate @songs, params: { controller: 'songs', action: 'index' }
+- @songs.each do |song|
+	= render 'row', song: song
+= raw paginate @songs, params: { controller: 'songs', action: 'index' }

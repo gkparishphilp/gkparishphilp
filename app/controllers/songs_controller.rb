@@ -17,6 +17,24 @@ class SongsController < SwellMedia::MediaController
 		end
 	end
 
+	def index
+		@songs = Song.published.order( publish_at: :desc )
+
+		if @tagged = params[:tagged]
+			@songs = @songs.tagged_with( @tagged )
+		end
+
+		if @artist = params[:by] || params[:artist]
+			@songs = @songs.where( "properties -> 'artist' = :artist", artist: @artist )
+		end
+
+		@count = @songs.count
+
+		@songs = @songs.page( params[:page] )
+
+		set_page_meta title: "#{ENV['APP_NAME']} Songs"
+	end
+
 
 	def update
 		authorize( @media )
