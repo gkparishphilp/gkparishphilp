@@ -1,9 +1,9 @@
 class MaximsController < SwellMedia::MediaController
 
 	def admin
-		@media = Maxim.all( page: params[:page] )
+		@media = Maxim.where.not( status: :trash ).( page: params[:page] )
 	end
-	
+
 	def create
 		authorize( Maxim )
 		@maxim = Maxim.new( maxim_params )
