@@ -15,7 +15,7 @@
 				New
 	.row
 		.col-xs-6
-			= raw paginate @media, params: { controller: 'maxims', action: 'admin' }
+			=# raw paginate @media, params: { controller: 'maxims', action: 'admin' }
 		.col-xs-6
 			= form_tag main_app.admin_maxims_path, method: :get, class: 'pull-right form-inline' do
 				= select_tag :status, options_from_collection_for_select( Maxim.statuses, :first, :first, params[:status] ), { prompt: "-- All --", class: 'form-control' }
