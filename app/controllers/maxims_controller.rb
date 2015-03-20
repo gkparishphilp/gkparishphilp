@@ -1,5 +1,9 @@
 class MaximsController < SwellMedia::MediaController
 
+	def admin
+		@media = Maxim.all( page: params[:page] )
+	end
+	
 	def create
 		authorize( Maxim )
 		@maxim = Maxim.new( maxim_params )
@@ -15,10 +19,6 @@ class MaximsController < SwellMedia::MediaController
 			set_flash 'Media could not be created', :error, @maxim
 			redirect_to :back
 		end
-	end
-
-	def index
-		@media = Maxim.all( page: params[:page] )
 	end
 
 	def random
