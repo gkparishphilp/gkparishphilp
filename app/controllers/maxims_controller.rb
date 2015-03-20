@@ -1,7 +1,7 @@
 class MaximsController < SwellMedia::MediaController
 
 	def admin
-		@media = Maxim.where.not( status: :trash ).( page: params[:page] )
+		@media = Maxim.order( created_at: :desc ).( page: params[:page] )
 	end
 
 	def create
