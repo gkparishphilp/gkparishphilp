@@ -17,6 +17,10 @@ class MaximsController < SwellMedia::MediaController
 		end
 	end
 
+	def index
+		@media = Maxim.all( page: params[:page] )
+	end
+
 	def random
 		redirect_to Maxim.published.random.url
 	end
