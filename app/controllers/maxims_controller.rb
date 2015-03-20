@@ -1,8 +1,5 @@
 class MaximsController < SwellMedia::MediaController
 
-	def admin
-		@media = Maxim.order( created_at: :desc )
-	end
 
 	def create
 		authorize( Maxim )
